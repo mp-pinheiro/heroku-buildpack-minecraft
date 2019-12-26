@@ -65,7 +65,7 @@ minecraft_url="https://minecraft.azureedge.net/bin-linux/bedrock-server-1.14.1.4
 
 echo -n "-----> Installing Minecraft ${minecraft_version}... "
 curl -o minecraft.zip -s -L $minecraft_url
-unzip minecraft.zip -d /app > /dev/null 2>&1
+unzip minecraft.zip -d $BUILD_DIR > /dev/null 2>&1
 echo "done"
 
 # if [ -n "${MINECRAFT_EULA:-""}" ]; then
@@ -81,4 +81,3 @@ mkdir -p $BUILD_DIR/bin
 
 chmod +x $BUILD_DIR/bin/minecraft
 chmod +x $BUILD_DIR/bin/sync
-chmod +x /app/bedrock_server
