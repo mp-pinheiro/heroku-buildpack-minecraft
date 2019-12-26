@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-mc_port=25566
+mc_port=19132
 port=${1:-${PORT:-8080}}
 
 if [ -z "$NGROK_API_TOKEN" ]; then
@@ -23,26 +23,27 @@ if [ "$READ_ONLY" != "true" ]; then
 fi
 
 # create server config
-echo "server-port=${mc_port}" >> /app/server.properties
-for f in whitelist banned-players banned-ips ops; do
-  test ! -f $f.json && echo -n "[]" > $f.json
-done
+# echo "server-port=${mc_port}" >> /app/server.properties
+# for f in whitelist banned-players banned-ips ops; do
+#  test ! -f $f.json && echo -n "[]" > $f.json
+# done
 
-limit=$(ulimit -u)
-case $limit in
-  512)   # 2X Dyno
-  heap="768m"
-  ;;
-  32768) # PX Dyno
-  heap="4g"
-  ;;
-  *)     # 1X Dyno
-  heap="384m"
-  ;;
-esac
+# limit=$(ulimit -u)
+# case $limit in
+#   512)   # 2X Dyno
+#   heap="768m"
+#   ;;
+#   32768) # PX Dyno
+#   heap="4g"
+#   ;;
+#   *)     # 1X Dyno
+#   heap="384m"
+#   ;;
+# esac
 
 echo "Starting: minecraft ${mc_port}"
-eval "screen -L -h 2048 -dmS minecraft java -Xmx${heap} -Xms${heap} -jar minecraft.jar nogui"
+# eval "screen -L -h 2048 -dmS minecraft java -Xmx${heap} -Xms${heap} -jar minecraft.jar nogui"
+eval "screen -L -h 2048 -dmS minecraft ./bedrock_server"
 main_pid=$!
 
 # Flush the logfile every second, and ensure that the logfile exists
