@@ -61,7 +61,7 @@ unzip ngrok.zip -d $BUILD_DIR/bin > /dev/null 2>&1
 echo "done"
 
 minecraft_version=${MINECRAFT_VERSION:-"1.14.4"}
-minecraft_url="https://minecraft.azureedge.net/bin-win/bedrock-server-1.14.1.4.zip"
+minecraft_url="https://minecraft.azureedge.net/bin-linux/bedrock-server-1.14.1.4.zip"
 
 echo -n "-----> Installing Minecraft ${minecraft_version}... "
 curl -o minecraft.zip -s -L $minecraft_url
