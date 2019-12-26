@@ -34,9 +34,6 @@
     },
     {
       "url": "heroku/jvm"
-    },
-    {
-      "url": "heroku-community/inline"
     }
   ]
 }
